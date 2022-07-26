@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - 8000:80
+    networks:
+      - internal
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    command: bash -c "yarn && yarn serve"
+    ports:
+      - 8080:8080
+    volumes:
+      - ./frontend:/frontend
+      - ./static:/static:rw
+      - node_modules:/frontend/node_modules
+    depends_on:
+      - db
+    environment:
+      NODE_PATH: /frontend/node_modules
+networks:
+  internal:
+
+volumes:
+  node_modules:
