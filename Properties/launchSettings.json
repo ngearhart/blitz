@@ -16,8 +16,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5060",
+      "applicationUrl": "http://*:8000",
       "dotnetRunMessages": true
+    },
+    "dotnet": {
+      "commandName": "Project",
+      "hotReloadProfile": "aspnetcore",
+      "applicationUrl": "http://*.8000",
+      "publishAllPorts": true
     },
     "IIS Express": {
       "commandName": "IISExpress",

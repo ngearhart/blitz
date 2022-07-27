@@ -6,7 +6,9 @@ WORKDIR /frontend
 COPY ./frontend/*.json .
 RUN yarn
 COPY ./frontend .
+ENV NUXT_HOST=0.0.0.0
 RUN yarn build
+CMD ["yarn", "start"]
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app

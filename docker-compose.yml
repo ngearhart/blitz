@@ -2,9 +2,15 @@ version: '3'
 
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    command: dotnet watch
     ports:
-      - 8000:80
+      - 8000:8000
+    volumes:
+      - .:/src
     networks:
       - internal
   frontend:
@@ -12,9 +18,9 @@ services:
       context: .
       dockerfile: Dockerfile
       target: frontend
-    command: bash -c "yarn && yarn serve"
+    command: bash -c "yarn && yarn dev"
     ports:
-      - 8080:8080
+      - 8080:3000
     volumes:
       - ./frontend:/frontend
       - ./static:/static:rw
